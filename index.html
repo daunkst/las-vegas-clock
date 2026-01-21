@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Las Vegas Clock</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .clock-box {
+    width: 260px;
+    aspect-ratio: 1 / 1;
+    background: #111;
+    border-radius: 14px;
+    border: 2px solid #0f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  .time {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .label {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    opacity: 0.75;
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+  <div class="clock-box">
+    <div id="time" class="time">--:--:--</div>
+    <div class="label">Local Time in Las Vegas</div>
+  </div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const timeString = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true
+    }).format(now);
+
+    document.getElementById("time").textContent = timeString;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
