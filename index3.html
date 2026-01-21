@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Las Vegas Clock</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;  /* background color of the iframe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;  /* remove scrollbars */
+  }
+
+  .clock-box {
+    width: 150px;           /* 50% smaller */
+    height: 150px;          /* square box */
+    background: #111;
+    border-radius: 8px;
+    border: 2px solid #888888;  /* medium gray border */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .time {
+    font-size: 1.5rem;       /* 50% smaller font */
+    font-weight: 700;
+    white-space: nowrap;     /* keep AM/PM on same line */
+  }
+
+  .label {
+    margin-top: 4px;
+    font-size: 0.5rem;       /* 50% smaller font */
+    opacity: 0.85;
+    line-height: 1.2;
+  }
+</style>
+</head>
+
+<body>
+  <div class="clock-box">
+    <div id="time" class="time">--:--:--</div>
+    <div class="label">Local Time in Las Vegas, Nevada</div>
+  </div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const timeString = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true
+    }).format(now);
+
+    document.getElementById("time").textContent = timeString;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
